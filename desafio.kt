@@ -1,12 +1,14 @@
-// [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
+enum class Nivel { BASICO, INTERMEDIARIO, AVANCADO }
 
-enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
+data class Usuario(val nome: String, var areaDeEstudo: String)
 
-class Usuario
+data class Professor(val nome: String, val especialidade: String)
 
-data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
+data class ConteudoEducacional(var nome: String, val professor: String, val duracaoMin: Int)
 
-data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
+data class Formacao(val nome: String, val nivel: Nivel, var conteudos: List<ConteudoEducacional>) {
+    
+    //TODO: val duracaoHoras: Int 
 
     val inscritos = mutableListOf<Usuario>()
     
