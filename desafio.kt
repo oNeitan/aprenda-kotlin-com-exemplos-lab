@@ -1,12 +1,14 @@
 enum class Nivel { BASICO, INTERMEDIARIO, AVANCADO }
 
-data class Usuario(val nome: String, var areaDeEstudo: String)
+enum class AreaTI { APRENDIZADOMAQUINA, BACKEND, DADOS, FRONTEND, FULLSTACK }
 
-data class Professor(val nome: String, val especialidade: String)
+data class Usuario(val id: Int, val nome: String, val idade: Int)
 
-data class ConteudoEducacional(var nome: String, val professor: String, val duracaoMin: Int)
+data class Professor(val nome: String, val areaTI: AreaTI)
 
-data class Formacao(val nome: String, val nivel: Nivel, var conteudos: List<ConteudoEducacional>) {
+data class ConteudoEducacional(var nome: String, val professor: Professor, val duracaoMin: Int)
+
+data class Formacao(val nome: String, val areaTI: AreaTI, val nivel: Nivel, val vagas: Int, var conteudos: List<ConteudoEducacional>) {
     
     //TODO: val duracaoHoras: Int 
 
