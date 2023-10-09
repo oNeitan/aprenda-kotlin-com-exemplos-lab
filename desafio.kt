@@ -9,14 +9,29 @@ data class Professor(val nome: String, val areaTI: AreaTI)
 data class ConteudoEducacional(var nome: String, val professor: Professor, val duracaoMin: Int)
 
 data class Formacao(val nome: String, val areaTI: AreaTI, val nivel: Nivel, val vagas: Int, var conteudos: List<ConteudoEducacional>) {
-    
-    //TODO: val duracaoHoras: Int 
 
+    fun duracaoHoras(): Double {
+        
+      	var minutosTotais = 0
+        for(ce in conteudos){ minutosTotais += ce.duracaoMin  }
+     
+        val horasTotais: Double = minutosTotais/60.0
+        return horasTotais
+   	}
+    
+   
     val inscritos = mutableListOf<Usuario>()
     
     fun matricular(usuario: Usuario) {
-        TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
-    }
+        
+        if(usuario.idade < 16) 
+        	{ println ("Desculpe, ${usuario.nome} 😢, alunos que possuem menos de 16 anos não podem se inscrever") } 
+        else if(inscritos.size >= vagas ) 
+        	{ println("Desculpe, ${usuario.nome} 😢, Não há vagas disponíveis para a formação $nome") } 
+        else 
+        	{ inscritos.add(usuario)
+        	  println("O Usuario ${usuario.nome} foi matriculado com sucesso!")}
+  	 }
 }
 
 fun main() {
